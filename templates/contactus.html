@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 contact-us-image-container">
+                <img src="{{ url_for('.static', filename='images/contact-us-image.jpg') }}" class="img-responsive" />
+            </div>
+            <div class="col-sm-6">
+                <h1>Contact Us</h1>
+                <hr>
+                <h4><i class="fa fa-envelope"></i> Email: yuc@gmail.com</h4>
+                <hr>
+                <h4><i class="fa fa-phone-square"></i> Phone: +39 349 719 05 67</h4>
+                <hr>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

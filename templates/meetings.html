@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% if current_user.username != 'admin' %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <a class="btn btn-info pull-right" href="{{ url_for('new_meeting') }}"><i class="fa fa-plus-circle"></i>
+                    New Meeting</a>
+            </div>
+        </div>
+    </div>
+    <div>
+    {% endif %}
+        <table class="table table-striped table-hover">
+            <thead class="thead thead-dark">
+            <th>Author</th>
+            <th>Subject</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Joined users</th>
+            <th>Action</th>
+            <th>Action</th>
+            </thead>
+            <tbody>
+            {% for meeting in meetings %}
+                <tr>
+                    <td><a class="mb"
+                           href="{{ url_for('user_meetings', username=meeting.author.username) }}">{{ meeting.author.username }} </a>
+                    </td>
+                    <td>{{ meeting.subject }}</td>
+                    <td>{{ meeting.description }}</td>
+                    <td>{{ meeting.location }}</td>
+                    <td>{{ meeting.date }}</td>
+                    <td>{{ meeting.time }}</td>
+                    <td>{{ meeting.users_count }}</td>
+                    <td class="text-center">
+                        {% if current_user.username != 'admin' %}
+                            {% if meeting.is_joined %}
+                            <button class="btn btn-success" disabled>Joined</button>
+                            {% else %}
+                                <a class="btn btn-success" href="/add_meeting/{{ meeting.id }}">Join</a>
+                        {% endif %}
+                        {% else %}
+                            ADMIN
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('meeting', meeting_id=meeting.id) }}"
+                           class="btn btn-warning">View</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

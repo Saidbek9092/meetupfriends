@@ -1,0 +1,63 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+    {% if title %}
+        YUC - {{ title }}
+    {% else %}
+        YUC
+    {% endif %}
+{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet"
+          href="{{ url_for('.static', filename='font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('.static', filename='style.css') }}">
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse {{ 'navbar-transparent' if request.path == "/" }}">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">YUC</a>
+            </div>
+            <ul class="nav navbar-nav">
+                {% if current_user.is_authenticated %}
+                    {% if current_user.email != 'admin@gmail.com' %}
+{#                        <li><a href="{{ url_for('meetings') }}"><i class="fa fa-users"></i> Meetings</a></li>#}
+                        <li><a href="{{ url_for('materials') }}"><i class="fa fa-files-o"></i> Materials</a></li>
+                    {% endif %}
+                         <li><a href="{{ url_for('meetings') }}"><i class="fa fa-users"></i> Meetings</a></li>
+                {% endif %}
+                <li><a class="nav-item nav-link" href="{{ url_for('contactus') }}"><i class="fa fa-phone"></i> Contact Us</a></li>
+            </ul>
+            {% if current_user.is_authenticated %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="nav-item nav-link" href="{{ url_for('account') }}"><i class="fa fa-user"></i> Account</a></li>
+                    <li><a class="nav-item nav-link" href="{{ url_for('logout') }}"><i class="fa fa-sign-out"></i> Logout</a></li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="nav-item nav-link" href="{{ url_for('login') }}"><i class="fa fa-sign-in"></i> Login</a></li>
+                    <li><a class="nav-item nav-link" href="{{ url_for('register') }}"><i class="fa fa-user-plus"></i> Register</a></li>
+                </ul>
+            {% endif %}
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+
+

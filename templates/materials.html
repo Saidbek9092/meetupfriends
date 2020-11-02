@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+       {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="container">
+        <h1>Materials</h1>
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <label for="input-file">Please upload your material here</label>
+            <input type="file" name="inputFile" id="input-file">
+            <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+    </div>
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+        <th>Author</th>
+        <th>Material name</th>
+        <th>Material download</th>
+        </thead>
+        <tbody>
+        {% for file in files %}
+            <tr>
+                <td>{{ file.user_id }}</td>
+                <td>{{ file.name }}</td>
+                <td>
+                    <a href="/download/{{ file.id }}">Download</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

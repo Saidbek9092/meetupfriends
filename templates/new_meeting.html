@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <legend><h1>{{ legend }}</h1>
+                        <div>
+                            {{ form.subject.label }}
+                            {{ form.subject(class="form-control") }}
+                        </div>
+                        <br>
+                        <div>
+                            {{ form.description.label }}
+                            {{ form.description(class="form-control") }}
+                        </div>
+                        <br>
+                        <div>
+                            {{ form.location.label }}
+                            {{ form.location(class="form-control") }}
+                        </div>
+                        <br>
+                        <div>
+                            {{ form.date.label }}
+                            {{ form.date(class="form-control") }}
+                        </div>
+                        <br>
+                        <div>
+                            {{ form.time.label }}
+                            {{ form.time(class="form-control") }}
+                        </div>
+                        <br>
+                        <div>
+                            {{ form.submit(class="btn btn-success") }}
+                        </div>
+                        <br>
+                    </legend>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

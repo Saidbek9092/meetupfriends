@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div id="homepage-wrapper">
+        <div id="full-background" class="full-height"></div>
+        <div id="background-opacity" class="full-height"></div>
+        <h1>
+               Your University Community
+        </h1>
+        <div class="small-divider"></div>
+        <h4>Studying together in a click</h4>
+        {% if current_user.is_authenticated %}
+            {% if current_user.email == 'admin@gmail.com'%}
+                 <a class="btn btn-success" href="{{ url_for('meetings') }}">Meetings</a>
+            {% else %}
+                <a class="btn btn-success" href="{{ url_for('meetings') }}">Meetings</a>
+                <a class="btn btn-info" href="{{ url_for('materials') }}">Materials</a>
+            {% endif %}
+        {% else %}
+            <a class="btn btn-warning pulse-button" href="{{ url_for('register') }}">Join Us</a>
+        {% endif %}
+    </div>
+
+{% endblock content %}

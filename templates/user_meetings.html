@@ -1,0 +1,26 @@
+    {% extends 'layout.html' %}
+
+    {% block content %}
+
+        <h1 class="bm"> Meeting by {{ user.username }}</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+            <th>Subject</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Time</th>
+            </thead>
+        <tbody>
+        {% for meeting in meetings %}
+            <tr>
+            <td><a href="{{ url_for('meeting', meeting_id=meeting.id) }}">{{ meeting.subject }}</a></td>
+            <td>{{ meeting.description }}</td>
+            <td>{{ meeting.location }}</td>
+            <td>{{ meeting.date }}</td>
+            <td>{{ meeting.time }}</td>
+        {% endfor %}
+        </tr>
+        </tbody>
+        </table>
+    {% endblock content %}
