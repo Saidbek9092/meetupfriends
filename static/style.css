@@ -1,0 +1,111 @@
+html, body {
+    height: 100%;
+}
+
+.full-height {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#full-background {
+    background-image: url('/static/images/homepage-background.jpg');
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
+}
+
+#background-opacity {
+    background-color: #189AD3;
+    /*background-color: #eeeeee;*/
+
+    opacity: 0.5;
+}
+
+.navbar.navbar-transparent {
+    background-color: transparent;
+    border: none;
+}
+
+.navbar .navbar-nav > li > a, .navbar .navbar-brand {
+    color: white;
+    font-weight: 600;
+}
+
+#homepage-wrapper {
+    width: 500px;
+    margin: 240px auto;
+    text-align: center;
+    color: white;
+}
+
+.small-divider {
+    width: 150px;
+    height: 4px;
+    margin: 25px auto;
+    background-color: #189AD3;
+}
+
+.navbar-inverse {
+    background-color: #005073;
+    border: none;
+    border-radius: 0;
+}
+
+.auth-form-container {
+    border: 1px solid #005073;
+    padding: 30px;
+    margin-top: 50px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 1px rgba(0, 81, 115, 1);
+}
+
+.pulse-button {
+    margin-top: 20px;
+    cursor: pointer;
+    animation: pulse 1s infinite;
+}
+
+.pulse:hover {
+    animation: none;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 20px rgba(204, 169, 44, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+        box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 20px rgba(204, 169, 44, 0);
+        box-shadow: 0 0 0 20px rgba(204, 169, 44, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+        box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    }
+}
+
+.contact-us-image-container {
+    margin-left: -15px;
+    margin-top: -20px;
+}
+
+.table {
+    margin-top: 20px;
+}
